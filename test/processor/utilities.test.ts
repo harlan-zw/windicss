@@ -135,6 +135,11 @@ describe('Utilities', () => {
     expect(processor.interpret('sm:container').styleSheet.build()).toMatchSnapshot('small container');
   });
 
+  it('responsive widths', () => {
+    const processor = new Processor();
+    expect(processor.interpret('large:w-1/3').styleSheet.build()).toContain('@media');
+  });
+
   it('container max-width test', () => {
     const processor = new Processor();
     expect(processor.interpret('container max-w-md').styleSheet.build()).toEqual(processor.interpret('max-w-md container').styleSheet.build());
