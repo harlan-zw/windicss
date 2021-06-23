@@ -230,6 +230,31 @@ describe('CSSParser', () => {
     expect(parser.parse().build()).toMatchSnapshot('css');
   });
 
+  it('Root @screen directives', () => {
+    const css = `
+:root {
+  --header-height: theme('spacing.14');
+  --docs-scroll-margin-block: calc(var(--header-height) + 4rem);
+  --blogpost-scroll-margin-block: calc(var(--header-height));
+}
+
+@screen md {
+  :root {
+    --header-height: theme('spacing.18');
+    --blogpost-scroll-margin-block: calc(var(--header-height) - 0.5rem);
+  }
+}
+
+@screen xl {
+  :root {
+    --docs-scroll-margin-block: calc(var(--header-height) + 1rem);
+  }
+}`;
+
+    const parser = new CSSParser(css, PROCESSOR);
+    expect(parser.parse().build()).toMatchSnapshot('css');
+  });
+
   it('apply chain', () => {
     const css = `.base {
       @apply w-9 h-9 rounded-md;

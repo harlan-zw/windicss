@@ -152,6 +152,23 @@ Tools / Pseudo Classes / css / 0: |-
   #bundle .logo {
     width: 300px;
   }
+Tools / Root @screen directives / css / 0: |-
+  :root {
+    --header-height: 3.5rem;
+    --docs-scroll-margin-block: calc(var(--header-height) + 4rem);
+    --blogpost-scroll-margin-block: calc(var(--header-height));
+  }
+  @media (min-width: 768px) {
+    :root {
+      
+      --blogpost-scroll-margin-block: calc(var(--header-height) - 0.5rem);
+    }
+  }
+  @media (min-width: 1280px) {
+    :root {
+      --docs-scroll-margin-block: calc(var(--header-height) + 1rem);
+    }
+  }
 Tools / Simple atRule / css / 0: |-
   @media (min-width: 768px) {
     .test {
